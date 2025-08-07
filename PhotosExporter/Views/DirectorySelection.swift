@@ -60,7 +60,7 @@ struct DirectorySelection: View {
       .padding(.leading, 10)
     }
     .padding()
-    .frame(minWidth: 500, minHeight: 275)
+    .frame(width: 600, height: 275)
   }
 }
 

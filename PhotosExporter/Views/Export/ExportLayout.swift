@@ -42,60 +42,77 @@ struct ExportLayout: View {
   ]
 
   var body: some View {
-    NavigationSplitView {
-      List(selection: $navSelectionId) {
-        ForEach(navItemList) { item in
-          NavigationLink(value: item.id) {
-            HStack {
-              Image(systemName: item.icon)
-              Text(item.label)
+    VStack(spacing: 0) {
+      NavigationSplitView {
+        List(selection: $navSelectionId) {
+          ForEach(navItemList) { item in
+            NavigationLink(value: item.id) {
+              HStack {
+                Image(systemName: item.icon)
+                Text(item.label)
+              }
             }
           }
         }
-
-        Spacer()
-
-        Button {
-          appModel.clearExportURL()
-        } label: {
-          Label("Change Folder", systemImage: "xmark.square")
-            .foregroundColor(.white)
+        .frame(minWidth: 150)
+      } detail: {
+        switch navSelectionId {
+        case .lastRun:
+          LastRun(historyEntry: photosExporterLibModel.lastRun)
+            .onAppear() {
+              photosExporterLibModel.refreshLastRun()
+            }
+        case .export:
+          ExportRun(status: photosExporterLibModel.status)
+        case .history:
+          ExportRunHistory(exportRunHistory: photosExporterLibModel.exportRunHistory)
+            .onAppear() {
+              photosExporterLibModel.refreshExportHistory()
+            }
         }
-        .buttonStyle(.borderedProminent)
-        .controlSize(.large)
       }
-      .frame(minWidth: 170)
-    } detail: {
-      switch navSelectionId {
-      case .lastRun:
-        LastRun(historyEntry: photosExporterLibModel.lastRun)
-          .onAppear() {
-            photosExporterLibModel.refreshLastRun()
+      
+      GroupBox {
+        HStack {
+          Label("Folder:", systemImage: "folder").bold()
+          Text(appModel.exportURL?.path ?? "Not set")
+
+          Spacer()
+          
+          Button {
+            appModel.clearExportURL()
+          } label: {
+            Label("Change", systemImage: "xmark.circle")
+              .foregroundColor(.white)
           }
-      case .export:
-        ExportRun(status: photosExporterLibModel.status)
-      case .history:
-        ExportRunHistory(exportRunHistory: photosExporterLibModel.exportRunHistory)
-          .onAppear() {
-            photosExporterLibModel.refreshExportHistory()
-          }
+          .buttonStyle(.borderedProminent)
+          .controlSize(.large)
+        }
+        .padding(.leading, 10)
+        .padding(.trailing, 10)
       }
     }
+    .frame(minWidth: 900, minHeight: 600)
   }
 }
 
 struct ExportLayoutPreview: View {
   @State var modelOpt: PhotosExporterLibModel? = nil
+  @State var appModel: AppModel = PreviewHelper.getAppModel()
 
   var body: some View {
     switch modelOpt {
     case .none:
-      Text("Loading...")
+      Text("ExportLayoutPreview...")
         .task {
-          modelOpt = await PreviewHelper.getPhotosExporterLibModel()
+          await appModel.initExporter()
+          modelOpt = appModel.photosExporterLibModel
         }
+        .frame(minWidth: 1000, minHeight: 700)
     case .some(let model):
-      ExportLayout().environment(model)
+      ExportLayout()
+        .environment(model)
+        .environment(appModel)
     }
   }
 }

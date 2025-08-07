@@ -21,6 +21,7 @@ struct LastRun: View {
   var body: some View {
     if let historyEntry {
       RunHistoryEntryView(historyEntry: historyEntry)
+        .frame(minWidth: 750, minHeight: 500)
     } else {
       VStack {
         Spacer()
@@ -33,6 +34,7 @@ struct LastRun: View {
         Spacer()
       }
       .padding()
+      .frame(minWidth: 750, minHeight: 500)
     }
   }
 }

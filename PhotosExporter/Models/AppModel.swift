@@ -74,11 +74,16 @@ class AppModel {
   func initExporter() async {
     do {
       if let exportURL = self.exportURL {
+        self.logger.debug("Checking security scope access for export URL: \(exportURL)")
         if !exportURL.startAccessingSecurityScopedResource() {
           self.logger.warning("Failed to access security scope for export URL: \(exportURL)")
           // We'll continue here anyway, because this doesn't always signal a failure
         }
-        let photosExporter = try await PhotosExporterLib.create(exportBaseDir: exportURL)
+        self.logger.debug("Received security scope access for export URL: \(exportURL)")
+        let photosExporter = try await PhotosExporterLib.create(
+          exportBaseDir: exportURL,
+          logger: self.logger,
+        )
         self.photosExporterLibModel = try PhotosExporterLibModel(
           appModel: self,
           photosExporter: photosExporter,

@@ -69,7 +69,7 @@ struct ExportRunHistory: View {
         }
       }
       .foregroundColor(.primary)
-      .frame(minWidth: 600, minHeight: 350)
+      .frame(minWidth: 750, minHeight: 500)
     }
   }
 }

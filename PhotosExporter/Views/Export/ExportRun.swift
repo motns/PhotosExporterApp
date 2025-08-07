@@ -116,9 +116,32 @@ struct ExportRun: View {
       }
       .padding()
     }
-    .frame(minWidth: 600, minHeight: 350)
+    .frame(minWidth: 750, minHeight: 500)
   }
 }
+
+struct ExportRunPreview: View {
+  @State var modelOpt: PhotosExporterLibModel? = nil
+  @State var appModel: AppModel = PreviewHelper.getAppModel()
+  var status: PhotosExporterLib.Status
+
+  var body: some View {
+    switch modelOpt {
+    case .none:
+      Text("ExportRunPreview...")
+        .task {
+          await appModel.initExporter()
+          modelOpt = appModel.photosExporterLibModel
+        }
+        .frame(minWidth: 750, minHeight: 500)
+    case .some(let model):
+      ExportRun(status: status)
+        .environment(model)
+        .environment(appModel)
+    }
+  }
+}
+
 
 #Preview("Not Running") {
   let status = PhotosExporterLib.Status(
@@ -129,7 +152,7 @@ struct ExportRun: View {
     symlinkCreatorStatus: .notStarted,
   )
 
-  ExportRun(status: status)
+  ExportRunPreview(status: status)
 }
 
 #Preview("Exporter Running") {
@@ -144,12 +167,17 @@ struct ExportRun: View {
 //  )
   
   let status = PhotosExporterLib.Status(
-    status: .notStarted,
-    assetExporterStatus: AssetExporterStatus.notStarted(),
+    status: .running(nil),
+    assetExporterStatus: AssetExporterStatus(
+      status: .running(nil),
+      exportAssetStatus: .running(TaskProgress(toProcess: 100, processed: 27)),
+      markDeletedStatus: .notStarted,
+      removeExpiredStatus: .notStarted,
+    ),
     collectionExporterStatus: .notStarted,
     fileExporterStatus: FileExporterStatus.notStarted(),
     symlinkCreatorStatus: .notStarted,
   )
 
-  ExportRun(status: status)
+  ExportRunPreview(status: status)
 }
