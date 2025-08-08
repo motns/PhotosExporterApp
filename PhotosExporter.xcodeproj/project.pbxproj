@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7642AEC32E45B0CE00706CA7 /* PhotosExporterLib in Frameworks */ = {isa = PBXBuildFile; productRef = 7642AEC22E45B0CE00706CA7 /* PhotosExporterLib */; };
 		766575262DFB22550053FCC4 /* PhotosExporterLib in Frameworks */ = {isa = PBXBuildFile; productRef = 766575252DFB22550053FCC4 /* PhotosExporterLib */; };
 		76A7A6B52E01BC1300F98B0C /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 76A7A6B42E01BC1300F98B0C /* Logging */; };
 		76F0DD972E01C1AC007DD35E /* LoggingOSLog in Frameworks */ = {isa = PBXBuildFile; productRef = 76F0DD962E01C1AC007DD35E /* LoggingOSLog */; };
@@ -44,6 +45,7 @@
 			files = (
 				76F0DD972E01C1AC007DD35E /* LoggingOSLog in Frameworks */,
 				76A7A6B52E01BC1300F98B0C /* Logging in Frameworks */,
+				7642AEC32E45B0CE00706CA7 /* PhotosExporterLib in Frameworks */,
 				766575262DFB22550053FCC4 /* PhotosExporterLib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,6 +100,7 @@
 				766575252DFB22550053FCC4 /* PhotosExporterLib */,
 				76A7A6B42E01BC1300F98B0C /* Logging */,
 				76F0DD962E01C1AC007DD35E /* LoggingOSLog */,
+				7642AEC22E45B0CE00706CA7 /* PhotosExporterLib */,
 			);
 			productName = PhotosExporterApp;
 			productReference = 766575152DFB1C710053FCC4 /* PhotosExporter.app */;
@@ -128,9 +131,9 @@
 			mainGroup = 7665750C2DFB1C710053FCC4;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				766575242DFB22550053FCC4 /* XCLocalSwiftPackageReference "../PhotosExporterLib" */,
 				766575B92E01B9A70053FCC4 /* XCRemoteSwiftPackageReference "swift-log-oslog" */,
 				76A7A6B32E01BC1300F98B0C /* XCRemoteSwiftPackageReference "swift-log" */,
+				7642AEC12E45B0CE00706CA7 /* XCRemoteSwiftPackageReference "PhotosExporterLib.swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 766575162DFB1C710053FCC4 /* Products */;
@@ -292,7 +295,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 0.1;
+				CURRENT_PROJECT_VERSION = 0.2;
 				DEVELOPMENT_TEAM = X3NPW6ZT98;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -306,7 +309,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = io.motns.PhotosExporter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -324,7 +327,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 0.1;
+				CURRENT_PROJECT_VERSION = 0.2;
 				DEVELOPMENT_TEAM = X3NPW6ZT98;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -338,7 +341,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = io.motns.PhotosExporter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -370,14 +373,15 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		766575242DFB22550053FCC4 /* XCLocalSwiftPackageReference "../PhotosExporterLib" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../PhotosExporterLib;
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
+		7642AEC12E45B0CE00706CA7 /* XCRemoteSwiftPackageReference "PhotosExporterLib.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/motns/PhotosExporterLib.swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.1.0;
+			};
+		};
 		766575B92E01B9A70053FCC4 /* XCRemoteSwiftPackageReference "swift-log-oslog" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/chrisaljoudi/swift-log-oslog";
@@ -397,6 +401,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7642AEC22E45B0CE00706CA7 /* PhotosExporterLib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7642AEC12E45B0CE00706CA7 /* XCRemoteSwiftPackageReference "PhotosExporterLib.swift" */;
+			productName = PhotosExporterLib;
+		};
 		766575252DFB22550053FCC4 /* PhotosExporterLib */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PhotosExporterLib;

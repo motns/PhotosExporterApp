@@ -1,5 +1,5 @@
 {
-  "originHash" : "300ce88f6816259881f172c65ec3752ac121f2f221b5ebe0fde8aeb16aa5e4a0",
+  "originHash" : "6781f01a3e01198365c0a222930e3395b6f6104eea7ed4239f7160b3c69baf82",
   "pins" : [
     {
       "identity" : "grdb.swift",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "a5a1be26b4513dc7ec360eb56bc08a345bac6649",
         "version" : "7.5.0"
+      }
+    },
+    {
+      "identity" : "photosexporterlib.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/motns/PhotosExporterLib.swift.git",
+      "state" : {
+        "revision" : "1240b7a5c330e6cf4451161fbc426cef0726d759",
+        "version" : "0.1.0"
       }
     },
     {
