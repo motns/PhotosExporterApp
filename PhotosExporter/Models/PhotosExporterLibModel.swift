@@ -31,7 +31,7 @@ class PhotosExporterLibModel {
   @MainActor
   func runExport() async {
     do {
-      for try await exporterStatus in photosExporter.export() {
+      for try await exporterStatus in photosExporter.exportWithProgress() {
         status = exporterStatus
       }
     } catch {
